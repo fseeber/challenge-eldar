@@ -3,4 +3,4 @@ uno a muchos entre objetos. Las cámaras que son las que generan la imagen seri�
 Cada monitor seria un observador, que sera actualizado solo cuando haya un cambio en la imagen.
 De esta forma se optimizaría el ancho de banda utilizado ya que el sistema monitoreara los cambios en las imagenes
 y solo notificará a los observadores cuando haya un cambio.
-De esta forma las transmisiones no serán constantes sino solo cuando se produzca un cambio en la imagen.
+De esta forma las transmisiones no serán constantes sino solo cuando se produzca un cambio en la imagen, permitiendo también que el sistema planteado tengo mayor desacoplamiento, escalabilidad y eficiencia.
