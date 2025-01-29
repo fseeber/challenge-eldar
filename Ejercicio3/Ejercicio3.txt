@@ -1,0 +1,6 @@
+Para este caso utilizaria el patrón de diseño Observer. Ya que este patrón permite utilizar y definir una relación de 
+uno a muchos entre objetos. Las cámaras que son las que generan la imagen serián los observables
+Cada monitor seria un observador, que sera actualizado solo cuando haya un cambio en la imagen.
+De esta forma se optimizaría el ancho de banda utilizado ya que el sistema monitoreara los cambios en las imagenes
+y solo notificará a los observadores cuando haya un cambio.
+De esta forma las transmisiones no serán constantes sino solo cuando se produzca un cambio en la imagen.
