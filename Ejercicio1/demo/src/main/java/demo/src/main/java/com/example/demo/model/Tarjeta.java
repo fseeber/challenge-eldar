@@ -1,7 +1,10 @@
 package demo.src.main.java.com.example.demo.model;
 
+import java.time.LocalDate;
+
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Tarjeta {
@@ -10,21 +13,25 @@ public class Tarjeta {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    //@NotNull
-    private String marca;
+    @Enumerated(EnumType.STRING)
+    private MarcaTarjeta marca;
 
-    //@NotNull
     private String numero;
 
-    //@NotNull
-    private String fechaVencimiento;
-
-    //@NotNull
     private String titular;
 
     @ManyToOne
     @JoinColumn(name = "usuario_id")
-    private Usuario usuario; // Relación con el usuario
+    private Usuario usuario;
+    
+    private String dni;
+
+    private LocalDate fechaNacimiento;
+
+    private LocalDate fechaVencimiento;
+    
+    @JsonIgnore
+    private String cvv;
 
     public Long getId() {
         return id;
@@ -34,11 +41,11 @@ public class Tarjeta {
         this.id = id;
     }
 
-    public String getMarca() {
+    public MarcaTarjeta getMarca() {
         return marca;
     }
 
-    public void setMarca(String marca) {
+    public void setMarca(MarcaTarjeta marca) {
         this.marca = marca;
     }
 
@@ -48,14 +55,6 @@ public class Tarjeta {
 
     public void setNumero(String numero) {
         this.numero = numero;
-    }
-
-    public String getFechaVencimiento() {
-        return fechaVencimiento;
-    }
-
-    public void setFechaVencimiento(String fechaVencimiento) {
-        this.fechaVencimiento = fechaVencimiento;
     }
 
     public String getTitular() {
@@ -73,5 +72,39 @@ public class Tarjeta {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+
+    public LocalDate getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public LocalDate getFechaVencimiento() {
+        return fechaVencimiento;
+    }
+
+    public void setFechaVencimiento(LocalDate fechaVencimiento) {
+        this.fechaVencimiento = fechaVencimiento;
+    }
+
+    public String getCvv() {
+        return cvv;
+    }
+
+    public void setCvv(String cvv) {
+        this.cvv = cvv;
+    } 
+
+    
     
 }

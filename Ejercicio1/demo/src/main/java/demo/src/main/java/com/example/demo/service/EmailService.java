@@ -1,5 +1,7 @@
 package demo.src.main.java.com.example.demo.service;
 
+import java.math.BigDecimal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -19,6 +21,18 @@ public class EmailService {
         message.setText("Hola, \n\nTu compra ha sido realizada con éxito.\nDetalle de la compra:\n" +
                         "Monto: $" + monto + "\n" +
                         "Detalle: " + detalleCompra + "\n\nGracias por tu compra!");
+
+        emailSender.send(message);
+    }
+
+    public void enviarCorreoCompraExitosa(String email, String detalle, BigDecimal totalConTasa) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom("smtp@mailtrap.io"); // Tu correo de origen
+        message.setTo(email); // El correo del usuario
+        message.setSubject("Confirmación de Compra Exitosa");
+        message.setText("Hola, \n\nTu compra ha sido realizada con éxito.\nDetalle de la compra:\n" +
+                        "Total con tasa: $" + totalConTasa + "\n" +
+                        "Detalle: " + detalle + "\n\nGracias por tu compra!");
 
         emailSender.send(message);
     }

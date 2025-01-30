@@ -4,7 +4,9 @@ import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.validation.constraints.Email;
 
 @Entity
@@ -14,24 +16,20 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    //@NotNull
     private String nombre;
 
-    //@NotNull
     private String apellido;
 
-    //@NotNull
     private String dni;
 
-    //@NotNull
     private LocalDate fechaNacimiento;
 
     @Email
-    //@NotNull
     private String email;
 
-    @OneToMany(mappedBy = "usuario")
-    private List<Tarjeta> tarjetas; // Relación con las tarjetas
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    @JsonIgnore 
+    private List<Tarjeta> tarjetas; 
     
     public String getNombre() {
         return nombre;
