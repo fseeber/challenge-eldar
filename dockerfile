@@ -1,14 +1,21 @@
-# Imagen base de JDK para ejecutar la aplicación
-FROM openjdk:17-jdk-slim
+FROM maven:3.8.4-openjdk-11 as builder
 
-# Directorio de trabajo dentro del contenedor
+# Establecer el directorio de trabajo en el contenedor
 WORKDIR /app
 
-# Copiar el archivo JAR generado al contenedor
-COPY target/demo-0.0.1-SNAPSHOT.jar app.jar
+# Copiar todo el proyecto
+COPY . .
 
-# Exponer el puerto en el que la aplicación escucha
-EXPOSE 8080
+# Construcción del proyecto
+RUN mvn clean package -DskipTests
 
-# Comando para ejecutar la aplicación
+FROM openjdk:11
+
+# Establecer el directorio de trabajo para la app
+WORKDIR /app
+
+# Copiar el JAR desde la etapa de construcción
+COPY --from=builder /app/Ejercicio1/demo/target/*.jar app.jar
+
+# Ejecutar la aplicación
 ENTRYPOINT ["java", "-jar", "app.jar"]
