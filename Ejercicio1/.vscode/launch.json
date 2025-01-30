@@ -1,0 +1,21 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "ConsoleMenuApplication",
+            "request": "launch",
+            "mainClass": "demo.src.main.java.com.example.demo.ConsoleMenuApplication",
+            "projectName": "springboot-menu-api"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-ConsoleMenuApplication<springboot-menu-api>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.example.demo.ConsoleMenuApplication",
+            "projectName": "springboot-menu-api",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
